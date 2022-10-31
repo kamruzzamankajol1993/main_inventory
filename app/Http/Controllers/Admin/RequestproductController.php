@@ -157,9 +157,10 @@ class RequestproductController extends Controller
 
             //first table quantity update
 
-            return redirect('admin/request_product_view/'.$invoice_id)->with('success','Created Successfully');
+
 
     }
+    return redirect('admin/request_product_view/'.$invoice_id)->with('success','Created Successfully');
 }
 
 
@@ -214,9 +215,9 @@ $condition_main_product_id = $input['nmain_product_id'];
 
         //first table quantity update
 
-        return redirect('admin/request_product_view/'.$invoice_id)->with('success','Created Successfully');
 
 }
+return redirect('admin/request_product_view/'.$invoice_id)->with('success','Created Successfully');
 
 
 }

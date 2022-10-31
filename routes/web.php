@@ -150,11 +150,18 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     //purchase
-    Route::get('purchase/create', [Requestproduct::class, 'create'])->name('purchase_create');
+    Route::get('purchase/create', [PurchaseController::class, 'create'])->name('purchase_create');
     Route::get('purchase', [PurchaseController::class, 'index'])->name('purchase');
     Route::post('purchase_store', [PurchaseController::class, 'store'])->name('purchase_store');
     Route::post('purchase_update', [PurchaseController::class, 'update'])->name('purchase_update');
     Route::post('purchase_delete/{id}', [PurchaseController::class, 'delete'])->name('purchase_delete');
+    Route::get('purchase_view/{id}', [PurchaseController::class, 'view'])->name('purchase_view');
+
+    Route::get('purchase_edit/{id}', [PurchaseController::class, 'edit'])->name('purchase_edit');
+    Route::get('purchase_print/{id}', [PurchaseController::class, 'print'])->name('purchase_print');
+
+
+
     Route::get('purchase_pagination_start_delete', [PurchaseController::class, 'purchase_pagination_start_delete'])->name('purchase_pagination_start_delete');
     Route::get('purchase_pagination_start', [PurchaseController::class, 'purchase_pagination_start'])->name('purchase_pagination_start');
     Route::get('purchase_pagination_start_search', [PurchaseController::class, 'purchase_pagination_start_search'])->name('purchase_pagination_start_search');
