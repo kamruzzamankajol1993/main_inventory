@@ -10,10 +10,12 @@
             </th>
             <th >Sl.</th>
             <th>Vendor Name</th>
+            <th>WareHouse</th>
 <th>Total Product</th>
 <th>Total Quantity</th>
+<th>Total Price</th>
 <th>Request date</th>
-                            <th>Urgent</th>
+
             <th>Action</th>
         </tr>
         </thead>
@@ -30,36 +32,38 @@
             <td class="text-body fw-bold">{{ $key+1 }}</td>
 
             <td>{{ $all_attribute->vendor_id }} </td>
+            <td>{{ $all_attribute->warehouse }} </td>
             <td>{{ $all_attribute->total_product }}</td>
             <td>{{ $all_attribute->total_quantity }}</td>
+            <td>{{ $all_attribute->total_buy_price }}</td>
             <td>{{ date('d-m-Y', strtotime($all_attribute->request_date))}}</td>
-            <td>{{ $all_attribute->urgent }}</td>
+
             <td>
                 <div class="d-flex gap-1">
 
 
-                    @if (Auth::guard('admin')->user()->can('request_product_view'))
+                    @if (Auth::guard('admin')->user()->can('purchase_view'))
 
-<a class="btn btn-transparent btn-sm text-success" href="{{ route('request_product_view',$all_attribute->id) }}">
+<a class="btn btn-transparent btn-sm text-success" href="{{ route('purchase_view',$all_attribute->id) }}">
             <i class="mdi mdi-eye font-size-14"></i>
 </a>
 
 @endif
 
-                    @if (Auth::guard('admin')->user()->can('request_product_update'))
+                    @if (Auth::guard('admin')->user()->can('purchase_update'))
 
-<a class="btn btn-transparent btn-sm text-success" href="{{ route('request_product_edit',$all_attribute->id) }}">
+<a class="btn btn-transparent btn-sm text-success" href="{{ route('purchase_edit',$all_attribute->id) }}">
             <i class="mdi mdi-pencil font-size-14"></i>
 </a>
 
 @endif
-@if (Auth::guard('admin')->user()->can('request_product_delete'))
+@if (Auth::guard('admin')->user()->can('purchase_delete'))
 
 
                         <button class=" btn btn-transparent btn-sm text-danger"  onclick="deleteTag({{ $all_attribute->id}})"><i
                                     class="mdi mdi-delete font-size-14"></i></button>
 
-                                    <form id="delete-form-{{ $all_attribute->id }}" action="{{ route('request_product_delete',$all_attribute->id) }}" method="POST" style="display: none;">
+                                    <form id="delete-form-{{ $all_attribute->id }}" action="{{ route('purchase_delete',$all_attribute->id) }}" method="POST" style="display: none;">
                                         @method('DELETE')
                                                                       @csrf
 
@@ -73,8 +77,8 @@
         </tbody>
     </table>
 </div>
-@include('backend.request_product.normal_pagination')
-<script type="text/javascript" src="{{ asset('/') }}public/custom_js/request_product_page_search.js"></script>
-<script type="text/javascript" src="{{ asset('/') }}public/custom_js/request_product_page.js"></script>
+@include('backend.purchase.normal_pagination')
+<script type="text/javascript" src="{{ asset('/') }}public/custom_js/purchase_product_page_search.js"></script>
+<script type="text/javascript" src="{{ asset('/') }}public/custom_js/purchase_product_page.js"></script>
 <script type="text/javascript" src="{{ asset('/') }}public/custom_js/delete_code.js"></script>
 

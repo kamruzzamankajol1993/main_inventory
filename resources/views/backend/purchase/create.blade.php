@@ -154,6 +154,26 @@ Purchase information | {{ $ins_name }}
                     </div>
                 </div>
 
+
+                <div class="mb-3 row">
+                    <label for="example-text-input" class="col-md-3 col-form-label">Warehouse</label>
+                    <div class="col-md-9">
+                        <select class="form-control"  name="warehouse">
+                            <option value="0">--Please Select ---</option>
+
+
+                        @foreach($ware_house_list as $all_ware_house_list)
+
+<option value="{{ $all_ware_house_list->name }}">{{ $all_ware_house_list->name }}</option>
+
+                        @endforeach
+                        </select>
+                    </div>
+                </div>
+
+
+
+
                 <div class="mb-3 row">
                     <label for="example-text-input" class="col-md-3 col-form-label">Request Note</label>
                     <div class="col-md-9">
@@ -203,8 +223,11 @@ Purchase information | {{ $ins_name }}
                                 </select>
                             </td>
 
-                            <td><input type="number" min="1" class="form-control p_quantity" value="0" name="p_quantity[]" id="p_quantity0" placeholder="Quantity"></td>
-                            <td><input type="number" min="1" class="form-control buying_price" value="0" name="buying_price[]" id="buying_price0" placeholder="Buying Price"></td>
+                            <td><input type="number" min="1" class="form-control p_quantity" value="1" name="p_quantity[]" id="p_quantity0" placeholder="Quantity"></td>
+                            <td>
+                                <input type="number" min="1" class="form-control buying_price" value="0" name="buying_price[]" id="buying_price0" placeholder="Buying Price">
+                                <input type="hidden" min="1" class="form-control main_buying_price" value="0" name=" main_buying_price[]" id="main_buying_price0" placeholder="Main Buying Price">
+                            </td>
                             <td>
                                 {{-- <div class="d-flex gap-3">
                                     <a href="javascript:void(0);" class="text-danger"><i
@@ -235,7 +258,7 @@ Purchase information | {{ $ins_name }}
                         <div class="mb-2 row">
                             <label for="example-text-input" class="col-md-3 col-form-label">Total Quantity</label>
                             <div class="col-md-9">
-                                <input class="form-control" type="text" name="total_quantity" value="" id="total_quantity" readonly>
+                                <input class="form-control" type="text" name="total_quantity" value="1" id="total_quantity" readonly>
                             </div>
                         </div>
 
@@ -279,7 +302,7 @@ Purchase information | {{ $ins_name }}
     $("#main_add_new_product").click(function () {
         ++i;
         var total_pp_quantity = $('#total_product').val();
-        $("#dynamicAddRemove").append('<tr><td style="width:400px"><select class="select form-control main_product_id select2" name="nmain_product_id[]" id="main_product_id'+i+'" data-placeholder="Choose ..."><option value="0">Please Select</option> @foreach($product_names as $main_product_list_all_print)<option value="{{ $main_product_list_all_print->id }}">{{ $main_product_list_all_print->product_name }}</option>@endforeach</select></td><td><input type="number" class="form-control p_quantity" min="1" name="p_quantity[]" value="0" id="p_quantity'+i+'" placeholder="Quantity"></td><td><input type="number" min="1" class="form-control buying_price" value="0" name="buying_price[]" id="buying_price'+i+'" placeholder="Buying Price"></td><td><button type="button" class="btn btn-sm btn-outline-danger remove-input-field"><i class="mdi mdi-delete-forever font-size-22"></i></button></td></tr>');
+        $("#dynamicAddRemove").append('<tr><td style="width:400px"><select class="select form-control main_product_id select2" name="nmain_product_id[]" id="main_product_id'+i+'" data-placeholder="Choose ..."><option value="0">Please Select</option> @foreach($product_names as $main_product_list_all_print)<option value="{{ $main_product_list_all_print->id }}">{{ $main_product_list_all_print->product_name }}</option>@endforeach</select></td><td><input type="number" class="form-control p_quantity" min="1" name="p_quantity[]" value="1" id="p_quantity'+i+'" placeholder="Quantity"></td><td><input type="number" min="1" class="form-control buying_price" value="0" name="buying_price[]" id="buying_price'+i+'" placeholder="Buying Price"> <input type="hidden" min="1" class="form-control main_buying_price" value="0" name="main_buying_price[]" id="main_buying_price'+i+'" placeholder="Main Buying Price"></td><td><button type="button" class="btn btn-sm btn-outline-danger remove-input-field"><i class="mdi mdi-delete-forever font-size-22"></i></button></td></tr>');
             $('.select2').select2();
 
 
@@ -319,6 +342,27 @@ for (var i = 0; i < total_net_price.length; i++) {
 }
 
 $('#total_quantity').val(final_total_net_discountprice);
+
+
+///
+
+var tfinal_total_net_discountprice = 0;
+
+var ttotal_net_price = $('input[name="buying_price[]"]').map(function (idx, ele) {
+   return $(ele).val();
+}).get();
+
+
+for (var i = 0; i < ttotal_net_price.length; i++) {
+    tfinal_total_net_discountprice += ttotal_net_price[i] << 0;
+}
+
+
+$('#total_buying_price').val(tfinal_total_net_discountprice);
+
+    ///
+
+    
 });
 </script>
 

@@ -245,4 +245,183 @@ public function edit($id){
     return view('backend.request_product.edit',compact('product_names','vendors','invoice','invoice_detail'));
 
 }
+
+
+public function request_product_pagination_start(Request $request){
+
+
+    $id_for_pass = $request->id_for_pass;
+
+
+    if($id_for_pass == 1){
+
+        $total_data =Requestproduct::latest()->count();
+        $total_serial_number1= $total_data/10;
+
+if (is_float($total_serial_number1)){
+    $total_serial_number = ceil($total_serial_number1);
+
+}else{
+    $total_serial_number = $total_serial_number1;
+}
+        $product_list = Requestproduct::latest()->limit(10)->get();
+        $minus_one = 0;
+    }else{
+        $total_data = Requestproduct::latest()->count();
+        $total_serial_number1= $total_data/10;
+
+if (is_float($total_serial_number1)){
+    $total_serial_number = ceil($total_serial_number1);
+
+}else{
+    $total_serial_number = $total_serial_number1;
+}
+        $minus_one = ($id_for_pass - 1)*10;
+
+        $product_list = Requestproduct::latest()->skip($minus_one)->take(10)->get();
+    }
+
+    $data = view('backend.request_product.request_product_pagination_start',compact('minus_one','product_list','total_serial_number','id_for_pass'))->render();
+            return response()->json(['options'=>$data]);
+
+
+}
+
+
+public function request_product_pagination_start_delete(Request $request){
+
+    $update_data = Requestproduct::whereIn('id',$request->numberOfSubChecked)->delete();
+
+
+
+
+$total_data = Requestproduct::latest()->count();
+
+$total_serial_number1= $total_data/10;
+
+if (is_float($total_serial_number1)){
+ $total_serial_number = ceil($total_serial_number1);
+
+}else{
+ $total_serial_number = $total_serial_number1;
+}
+
+//dd($total_serial_number);
+
+ $product_list = Requestproduct::latest()->limit(10)->get();
+
+
+
+$data = view('backend.request_product.request_product_pagination_start_delete',compact('product_list','total_serial_number'))->render();
+return response()->json(['options'=>$data]);
+}
+
+
+public function request_product_pagination_start_search(Request $request){
+
+
+    $search_value = $request->search_value;
+
+
+
+    $total_data = Requestproduct::Where('vendor_id','LIKE','%'.$search_value.'%')
+    ->orWhere('request_number','LIKE','%'.$search_value.'%')
+    ->orWhere('request_date','LIKE','%'.$search_value.'%')
+    ->orWhere('urgent','LIKE','%'.$search_value.'%')
+    ->orWhere('request_note','LIKE','%'.$search_value.'%')
+    ->orWhere('request_delivery_date','LIKE','%'.$search_value.'%')
+    ->orWhere('term','LIKE','%'.$search_value.'%')->latest()->count();
+
+        $total_serial_number1= $total_data/10;
+
+        if (is_float($total_serial_number1)){
+            $total_serial_number = ceil($total_serial_number1);
+
+        }else{
+            $total_serial_number = $total_serial_number1;
+        }
+
+         //dd($total_serial_number);
+
+            $product_list = Requestproduct::Where('vendor_id','LIKE','%'.$search_value.'%')
+            ->orWhere('request_number','LIKE','%'.$search_value.'%')
+            ->orWhere('request_date','LIKE','%'.$search_value.'%')
+            ->orWhere('urgent','LIKE','%'.$search_value.'%')
+            ->orWhere('request_note','LIKE','%'.$search_value.'%')
+            ->orWhere('request_delivery_date','LIKE','%'.$search_value.'%')
+            ->orWhere('term','LIKE','%'.$search_value.'%')->latest()->limit(10)->get();
+
+            $data = view('backend.request_product.request_product_pagination_start_search',compact('search_value','product_list','total_serial_number'))->render();
+            return response()->json(['options'=>$data]);
+
+
+}
+
+
+public function request_product_pagination_start_search_ajax(Request $request){
+
+
+    $search_value = $request->search_value;
+
+    $id_for_pass = $request->id_for_pass;
+
+
+
+    if($id_for_pass == 1){
+
+        $total_data =Requestproduct::Where('vendor_id','LIKE','%'.$search_value.'%')
+        ->orWhere('request_number','LIKE','%'.$search_value.'%')
+        ->orWhere('request_date','LIKE','%'.$search_value.'%')
+        ->orWhere('urgent','LIKE','%'.$search_value.'%')
+        ->orWhere('request_note','LIKE','%'.$search_value.'%')
+        ->orWhere('request_delivery_date','LIKE','%'.$search_value.'%')
+        ->orWhere('term','LIKE','%'.$search_value.'%')->latest()->count();
+        $total_serial_number1= $total_data/10;
+
+if (is_float($total_serial_number1)){
+    $total_serial_number = ceil($total_serial_number1);
+
+}else{
+    $total_serial_number = $total_serial_number1;
+}
+        $product_list = Requestproduct::Where('vendor_id','LIKE','%'.$search_value.'%')
+        ->orWhere('request_number','LIKE','%'.$search_value.'%')
+        ->orWhere('request_date','LIKE','%'.$search_value.'%')
+        ->orWhere('urgent','LIKE','%'.$search_value.'%')
+        ->orWhere('request_note','LIKE','%'.$search_value.'%')
+        ->orWhere('request_delivery_date','LIKE','%'.$search_value.'%')
+        ->orWhere('term','LIKE','%'.$search_value.'%')->latest()->limit(10)->get();
+        $minus_one = 0;
+    }else{
+        $total_data = Requestproduct::Where('vendor_id','LIKE','%'.$search_value.'%')
+        ->orWhere('request_number','LIKE','%'.$search_value.'%')
+        ->orWhere('request_date','LIKE','%'.$search_value.'%')
+        ->orWhere('urgent','LIKE','%'.$search_value.'%')
+        ->orWhere('request_note','LIKE','%'.$search_value.'%')
+        ->orWhere('request_delivery_date','LIKE','%'.$search_value.'%')
+        ->orWhere('term','LIKE','%'.$search_value.'%')->latest()->count();
+        $total_serial_number1= $total_data/10;
+
+if (is_float($total_serial_number1)){
+    $total_serial_number = ceil($total_serial_number1);
+
+}else{
+    $total_serial_number = $total_serial_number1;
+}
+        $minus_one = ($id_for_pass - 1)*10;
+
+        $product_list = Requestproduct::Where('vendor_id','LIKE','%'.$search_value.'%')
+        ->orWhere('request_number','LIKE','%'.$search_value.'%')
+        ->orWhere('request_date','LIKE','%'.$search_value.'%')
+        ->orWhere('urgent','LIKE','%'.$search_value.'%')
+        ->orWhere('request_note','LIKE','%'.$search_value.'%')
+        ->orWhere('request_delivery_date','LIKE','%'.$search_value.'%')
+        ->orWhere('term','LIKE','%'.$search_value.'%')
+        ->latest()->skip($minus_one)->take(10)->get();
+    }
+    $data = view('backend.request_product.request_product_pagination_start_search_ajax',compact('id_for_pass','minus_one','search_value','product_list','total_serial_number'))->render();
+            return response()->json(['options'=>$data]);
+
+
+}
 }

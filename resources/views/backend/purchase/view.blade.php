@@ -34,14 +34,14 @@ Purchase Detail | {{ $ins_name }}
 
 
                         <button type="button" class="btn btn-primary waves-effect waves-light"
-                                onclick='window.location="{{route('request_product_edit',$invoice->id)}}"'>
+                                onclick='window.location="{{route('purchase_edit',$invoice->id)}}"'>
                             <i
                                 class="fas fa-pen"></i> Edit Invoice
                         </button>
 
 
 
-                            <a type="button" href="{{route('request_product_print',$invoice->id)}}" class="btn btn-info waves-effect waves-light"><i
+                            <a type="button" href="{{route('purchase_print',$invoice->id)}}" class="btn btn-info waves-effect waves-light"><i
                                 class="fas fa-print"
                                 ></i>
                             Print
@@ -127,6 +127,7 @@ Purchase Detail | {{ $ins_name }}
                                         <th>#</th>
                                         <th>Name</th>
                                         <th>Quantity</th>
+                                        <th>Price</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -147,6 +148,7 @@ Purchase Detail | {{ $ins_name }}
                                             <td>{{++$key}}</td>
                                             <td>{{$product_name}}</td>
                                             <td>{{$pro_details->quantity}}</td>
+                                            <td>{{$pro_details->buy_price}}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>

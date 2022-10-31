@@ -49,7 +49,7 @@ Request Product information | {{ $ins_name }}
     <div class="col-sm-6 col-xl-6">
         <div class="d-flex flex-wrap gap-2">
             <p class="horizontal-center" >Selected:<span id="numberOfChecked"> 0</span></p>
-           
+
             <button type="" id="delete_button" class="btn btn-sm btn-outline-danger waves-effect ml-4" disabled>
                 Delete All
             </button>
@@ -186,4 +186,5 @@ $("#myModal").modal('hide');
 
 <script type="text/javascript" src="{{ asset('/') }}public/custom_js/request_product_page.js"></script>
 <script type="text/javascript" src="{{ asset('/') }}public/custom_js/delete_code.js"></script>
+<script type="text/javascript" src="{{ asset('/') }}public/custom_js/request_product_page_search.js"></script>
 @endsection

@@ -104,6 +104,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('request_product_edit/{id}', [RequestproductController::class, 'edit'])->name('request_product_edit');
     Route::get('request_product_print/{id}', [RequestproductController::class, 'print'])->name('request_product_print');
 
+    Route::get('get_buying_price_from_data', [PurchaseController::class, 'get_buying_price_from_data'])->name('get_buying_price_from_data');
+
+
+
     Route::get('request_product_pagination_start_delete', [RequestproductController::class, 'request_product_pagination_start_delete'])->name('request_product_pagination_start_delete');
     Route::get('request_product_pagination_start', [RequestproductController::class, 'request_product_pagination_start'])->name('request_product_pagination_start');
     Route::get('request_product_pagination_start_search', [RequestproductController::class, 'request_product_pagination_start_search'])->name('request_product_pagination_start_search');

@@ -81,10 +81,12 @@ Purchase Product information | {{ $ins_name }}
                             </th>
                             <th >Sl.</th>
                             <th>Vendor Name</th>
+                            <th>WareHouse</th>
 <th>Total Product</th>
  <th>Total Quantity</th>
+ <th>Total Price</th>
                 <th>Request date</th>
-                                            <th>Urgent</th>
+
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -101,10 +103,12 @@ Purchase Product information | {{ $ins_name }}
                             <td class="text-body fw-bold">{{ $key+1 }}</td>
 
                             <td>{{ $all_attribute->vendor_id }} </td>
+                            <td>{{ $all_attribute->warehouse }} </td>
                             <td>{{ $all_attribute->total_product }}</td>
                             <td>{{ $all_attribute->total_quantity }}</td>
+                            <td>{{ $all_attribute->total_buy_price }}</td>
                             <td>{{ date('d-m-Y', strtotime($all_attribute->request_date))}}</td>
-                            <td>{{ $all_attribute->urgent }}</td>
+
                             <td>
                                 <div class="d-flex gap-1">
 
@@ -184,6 +188,7 @@ $("#myModal").modal('hide');
 });
 </script>
 
-<script type="text/javascript" src="{{ asset('/') }}public/custom_js/purchase_page.js"></script>
+<script type="text/javascript" src="{{ asset('/') }}public/custom_js/purchase_product_page.js"></script>
 <script type="text/javascript" src="{{ asset('/') }}public/custom_js/delete_code.js"></script>
+<script type="text/javascript" src="{{ asset('/') }}public/custom_js/purchase_product_page_search.js"></script>
 @endsection

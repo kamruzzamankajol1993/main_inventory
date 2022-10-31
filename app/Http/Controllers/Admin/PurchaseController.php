@@ -34,6 +34,7 @@ use App\Models\Exchange;
 use App\Models\Orderby;
 use App\Models\Onlineexpense;
 use App\Models\Vendor;
+use App\Models\Warehouse;
 
 use App\Models\Purchase;
 use App\Models\Purchasedetail;
@@ -85,10 +86,11 @@ class PurchaseController extends Controller
         }
 
 
+        $ware_house_list = Warehouse::latest()->get();
 
         $vendors = Vendor::latest()->get();
         $product_names = MainProduct::latest()->get();
-        return view('backend.purchase.create', compact('vendors','product_names'));
+        return view('backend.purchase.create', compact('vendors','product_names','ware_house_list'));
 
     }
 
@@ -131,7 +133,8 @@ class PurchaseController extends Controller
 
     $database_save = new Purchase();
     $database_save->vendor_id = $request->vendor_name;
-    $database_save->request_number = $request->request_date;
+    $database_save->request_number = $request->request_number;
+    $database_save->warehouse = $request->warehouse;
     $database_save->request_date = $request->request_date;
     $database_save->request_note = $request->request_note;
 
@@ -144,7 +147,7 @@ class PurchaseController extends Controller
     $database_save->total_quantity = $request->total_quantity;
     $database_save->total_buy_price =$request->total_buy_price;
     //$database_save->request_delivery_date = $s_pay_date1;
-    $database_save->term = $request->payment_term;
+    $database_save->term = $request->term;
     $database_save->status = 'inc';
     $database_save->save();
 
@@ -164,6 +167,7 @@ class PurchaseController extends Controller
             $form->purchase_id=$invoice_id;
             $form->quantity=$input['p_quantity'][$key];
             $form->buy_price=$input['buying_price'][$key];
+            $form->main_buy_price=$input['main_buying_price'][$key];
             $form->save();
 
             //first table quantity update
@@ -197,9 +201,10 @@ public function update(Request $request){
 
 $database_save = Purchase::find($request->id);
 $database_save->vendor_id = $request->vendor_name;
-    $database_save->request_number = $request->request_date;
-    $database_save->request_date = $request->request_date;
-    $database_save->request_note = $request->request_note;
+$database_save->request_number = $request->request_number;
+$database_save->warehouse = $request->warehouse;
+$database_save->request_date = $request->request_date;
+$database_save->request_note = $request->request_note;
 
 
     $database_save->purchase_date = $request->purchase_date;
@@ -208,9 +213,9 @@ $database_save->vendor_id = $request->vendor_name;
 
     $database_save->total_product = $request->total_product;
     $database_save->total_quantity = $request->total_quantity;
-    $database_save->oo =$request->total_buy_price;
+    $database_save->total_buy_price =$request->total_buy_price;
    // $database_save->request_delivery_date = $s_pay_date1;
-    $database_save->term = $request->payment_term;
+    $database_save->term = $request->term;
     $database_save->status = 'inc';
 $database_save->save();
 
@@ -218,7 +223,7 @@ $database_save->save();
 $invoice_id = $database_save->id;
 
 
-$delete_id = Purchasedetail::where('request_id',$invoice_id)->delete();
+$delete_id = Purchasedetail::where('purchase_id',$invoice_id)->delete();
 
 
 
@@ -230,6 +235,7 @@ $condition_main_product_id = $input['nmain_product_id'];
         $form->purchase_id=$invoice_id;
         $form->quantity=$input['p_quantity'][$key];
         $form->buy_price=$input['buying_price'][$key];
+        $form->main_buy_price=$input['main_buying_price'][$key];
         $form->save();
 
         //first table quantity update
@@ -257,11 +263,202 @@ return redirect('admin/purchase_view/'.$invoice_id)->with('success','Created Suc
 public function edit($id){
 
     $invoice =  Purchase::where('id',$id)->first();
-    $invoice_detail = Purchasedetail::where('request_id',$id)->get();
+    $invoice_detail = Purchasedetail::where('purchase_id',$id)->get();
     $vendors = Vendor::latest()->get();
     $product_names = MainProduct::latest()->get();
 
-    return view('backend.purchase.edit',compact('product_names','vendors','invoice','invoice_detail'));
+    $ware_house_list = Warehouse::latest()->get();
+
+    return view('backend.purchase.edit',compact('ware_house_list','product_names','vendors','invoice','invoice_detail'));
+
+}
+
+
+public function get_buying_price_from_data(Request $request){
+
+
+    $get_buying_price_value = MainProduct::where('id',$request->main_product_id)->value('buying_price');
+
+      $data = $get_buying_price_value;
+ return response()->json($data);
+}
+
+
+public function purchase_pagination_start(Request $request){
+
+
+    $id_for_pass = $request->id_for_pass;
+
+
+    if($id_for_pass == 1){
+
+        $total_data =Purchase::latest()->count();
+        $total_serial_number1= $total_data/10;
+
+if (is_float($total_serial_number1)){
+    $total_serial_number = ceil($total_serial_number1);
+
+}else{
+    $total_serial_number = $total_serial_number1;
+}
+        $product_list = Purchase::latest()->limit(10)->get();
+        $minus_one = 0;
+    }else{
+        $total_data = Purchase::latest()->count();
+        $total_serial_number1= $total_data/10;
+
+if (is_float($total_serial_number1)){
+    $total_serial_number = ceil($total_serial_number1);
+
+}else{
+    $total_serial_number = $total_serial_number1;
+}
+        $minus_one = ($id_for_pass - 1)*10;
+
+        $product_list = Purchase::latest()->skip($minus_one)->take(10)->get();
+    }
+
+    $data = view('backend.purchase.purchase_pagination_start',compact('minus_one','product_list','total_serial_number','id_for_pass'))->render();
+            return response()->json(['options'=>$data]);
+
+
+}
+
+
+public function purchase_pagination_start_delete(Request $request){
+
+    $update_data = Purchase::whereIn('id',$request->numberOfSubChecked)->delete();
+
+
+
+
+$total_data = Purchase::latest()->count();
+
+$total_serial_number1= $total_data/10;
+
+if (is_float($total_serial_number1)){
+ $total_serial_number = ceil($total_serial_number1);
+
+}else{
+ $total_serial_number = $total_serial_number1;
+}
+
+//dd($total_serial_number);
+
+ $product_list = Purchase::latest()->limit(10)->get();
+
+
+
+$data = view('backend.purchase.purchase_pagination_start_delete',compact('product_list','total_serial_number'))->render();
+return response()->json(['options'=>$data]);
+}
+
+
+public function purchase_pagination_start_search(Request $request){
+
+
+    $search_value = $request->search_value;
+
+
+
+    $total_data = Purchase::Where('vendor_id','LIKE','%'.$search_value.'%')
+    ->orWhere('request_number','LIKE','%'.$search_value.'%')
+    ->orWhere('warehouse','LIKE','%'.$search_value.'%')
+    ->orWhere('purchase_lot_number','LIKE','%'.$search_value.'%')
+    ->orWhere('request_note','LIKE','%'.$search_value.'%')
+    ->orWhere('purchase_date','LIKE','%'.$search_value.'%')
+    ->orWhere('term','LIKE','%'.$search_value.'%')->latest()->count();
+
+        $total_serial_number1= $total_data/10;
+
+        if (is_float($total_serial_number1)){
+            $total_serial_number = ceil($total_serial_number1);
+
+        }else{
+            $total_serial_number = $total_serial_number1;
+        }
+
+         //dd($total_serial_number);
+
+            $product_list = Purchase::Where('vendor_id','LIKE','%'.$search_value.'%')
+            ->orWhere('request_number','LIKE','%'.$search_value.'%')
+            ->orWhere('warehouse','LIKE','%'.$search_value.'%')
+            ->orWhere('purchase_lot_number','LIKE','%'.$search_value.'%')
+            ->orWhere('request_note','LIKE','%'.$search_value.'%')
+            ->orWhere('purchase_date','LIKE','%'.$search_value.'%')
+            ->orWhere('term','LIKE','%'.$search_value.'%')->latest()->limit(10)->get();
+
+            $data = view('backend.purchase.purchase_pagination_start_search',compact('search_value','product_list','total_serial_number'))->render();
+            return response()->json(['options'=>$data]);
+
+
+}
+
+
+public function purchase_pagination_start_search_ajax(Request $request){
+
+
+    $search_value = $request->search_value;
+
+    $id_for_pass = $request->id_for_pass;
+
+
+
+    if($id_for_pass == 1){
+
+        $total_data =Purchase::Where('vendor_id','LIKE','%'.$search_value.'%')
+        ->orWhere('request_number','LIKE','%'.$search_value.'%')
+        ->orWhere('warehouse','LIKE','%'.$search_value.'%')
+        ->orWhere('purchase_lot_number','LIKE','%'.$search_value.'%')
+        ->orWhere('request_note','LIKE','%'.$search_value.'%')
+        ->orWhere('purchase_date','LIKE','%'.$search_value.'%')
+        ->orWhere('term','LIKE','%'.$search_value.'%')->latest()->count();
+        $total_serial_number1= $total_data/10;
+
+if (is_float($total_serial_number1)){
+    $total_serial_number = ceil($total_serial_number1);
+
+}else{
+    $total_serial_number = $total_serial_number1;
+}
+        $product_list = Purchase::Where('vendor_id','LIKE','%'.$search_value.'%')
+        ->orWhere('request_number','LIKE','%'.$search_value.'%')
+        ->orWhere('warehouse','LIKE','%'.$search_value.'%')
+        ->orWhere('purchase_lot_number','LIKE','%'.$search_value.'%')
+        ->orWhere('request_note','LIKE','%'.$search_value.'%')
+        ->orWhere('purchase_date','LIKE','%'.$search_value.'%')
+        ->orWhere('term','LIKE','%'.$search_value.'%')->latest()->limit(10)->get();
+        $minus_one = 0;
+    }else{
+        $total_data = Purchase::Where('vendor_id','LIKE','%'.$search_value.'%')
+        ->orWhere('request_number','LIKE','%'.$search_value.'%')
+        ->orWhere('warehouse','LIKE','%'.$search_value.'%')
+        ->orWhere('purchase_lot_number','LIKE','%'.$search_value.'%')
+        ->orWhere('request_note','LIKE','%'.$search_value.'%')
+        ->orWhere('purchase_date','LIKE','%'.$search_value.'%')
+        ->orWhere('term','LIKE','%'.$search_value.'%')->latest()->count();
+        $total_serial_number1= $total_data/10;
+
+if (is_float($total_serial_number1)){
+    $total_serial_number = ceil($total_serial_number1);
+
+}else{
+    $total_serial_number = $total_serial_number1;
+}
+        $minus_one = ($id_for_pass - 1)*10;
+
+        $product_list = Purchase::Where('vendor_id','LIKE','%'.$search_value.'%')
+        ->orWhere('request_number','LIKE','%'.$search_value.'%')
+        ->orWhere('warehouse','LIKE','%'.$search_value.'%')
+        ->orWhere('purchase_lot_number','LIKE','%'.$search_value.'%')
+        ->orWhere('request_note','LIKE','%'.$search_value.'%')
+        ->orWhere('purchase_date','LIKE','%'.$search_value.'%')
+        ->orWhere('term','LIKE','%'.$search_value.'%')
+        ->latest()->skip($minus_one)->take(10)->get();
+    }
+    $data = view('backend.purchase.purchase_pagination_start_search_ajax',compact('id_for_pass','minus_one','search_value','product_list','total_serial_number'))->render();
+            return response()->json(['options'=>$data]);
+
 
 }
 }
