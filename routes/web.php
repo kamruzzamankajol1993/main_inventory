@@ -175,11 +175,18 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     ///purchase return
-    Route::get('purchase_return/create', [Requestproduct::class, 'create'])->name('purchase_return_create');
+    Route::get('purchase_return/create', [PurchaseReturnController::class, 'create'])->name('purchase_return_create');
     Route::get('purchase_return', [PurchaseReturnController::class, 'index'])->name('purchase_return');
     Route::post('purchase_return_store', [PurchaseReturnController::class, 'store'])->name('purchase_return_store');
     Route::post('purchase_return_update', [PurchaseReturnController::class, 'update'])->name('purchase_return_update');
     Route::post('purchase_return_delete/{id}', [PurchaseReturnController::class, 'delete'])->name('purchase_return_delete');
+
+    Route::get('purchase_return_view/{id}', [PurchaseReturnController::class, 'view'])->name('purchase_return_view');
+    Route::get('purchase_return_edit/{id}', [PurchaseReturnController::class, 'edit'])->name('purchase_return_edit');
+    Route::get('purchase_return_print/{id}', [PurchaseReturnController::class, 'print'])->name('purchase_return_print');
+
+
+
     Route::get('purchase_return_pagination_start_delete', [PurchaseReturnController::class, 'purchase_return_pagination_start_delete'])->name('purchase_return_pagination_start_delete');
     Route::get('purchase_return_pagination_start', [PurchaseReturnController::class, 'purchase_return_pagination_start'])->name('purchase_return_pagination_start');
     Route::get('purchase_return_pagination_start_search', [PurchaseReturnController::class, 'purchase_return_pagination_start_search'])->name('purchase_return_pagination_start_search');

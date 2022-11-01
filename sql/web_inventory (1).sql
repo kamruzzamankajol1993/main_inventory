@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2022 at 01:22 AM
+-- Generation Time: Nov 01, 2022 at 01:17 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -1155,8 +1155,8 @@ CREATE TABLE `main_products` (
 INSERT INTO `main_products` (`id`, `cat_name`, `action_button`, `sku_product`, `product_name`, `slug`, `bangla_product_name`, `video_link`, `brand`, `unit`, `material`, `alert_quantity`, `manufacture`, `manufacture_part_number`, `condition`, `seo_keyword`, `model_number`, `catalog_number`, `buying_price`, `selling_price`, `wholesale_price`, `discount`, `discount_type`, `product_detail`, `status`, `created_at`, `updated_at`) VALUES
 (20, NULL, 'submit', '1471069487728989', 'mtT1bkss5D', 'mtt1bkss5d', 'ygUFbTrhUh', 'yEdQ3XZXQr', 'rrrrrr', 't36', 'California', '679189', 'eZk7E8kyl5', 'UBioAPNFeX', 'New', 'WWw3vWbrOZ', 'C28JtZBXlt', 'A9iuHk3zTI', '0', '0', NULL, '0', NULL, 'o8SCNvRD46', 'Active', '2022-09-08 03:32:38', '2022-09-08 03:32:38'),
 (21, NULL, 'draft', '2805606821916018', 'krMVoLB8a1', 'krmvolb8a1', 'QJpoMHrIJh', '4c9CMndhZA', 'rrrrrr', 't36', 'California', '864529', 'iuS7zpt81M', '27DhaVLvAN', 'New', 'yIm4sVXSot', 'qSvd2mbWle', 'FuQWDZGY0i', '0', '0', NULL, '0', NULL, 'VcjPB6yBnn', 'Active', '2022-09-08 03:32:57', '2022-09-08 03:32:57'),
-(22, 'Men\'s Fashion', 'submit', '8725901035189084', 'Stylish Comfortable jersey T-shirt for Men New Contrast', 'stylish_comfortable_jersey_t_shirt_for_men_new_contrast', 'bb', NULL, 'uniliver1', 'tgt', 'Oregon', '20', 'mn', '121', 'New', 't,k,t', '44', '44', '0', '0', NULL, '0', NULL, '<p>erwe</p>', 'Active', '2022-09-08 03:37:18', '2022-09-08 03:37:18'),
-(23, 'Men\'s Fashion', 'submit', '9293034438297855', 'Digital Printed Short Sleeve t-shirt for Men- Red', 'digital_printed_short_sleeve_t_shirt_for_men_red', 'uyu', NULL, 'rrrrrr', 't56', 'Nevada', '567567', '67567', '56756', 'Old', '576', '66', '65756', '0', '500', NULL, '0', NULL, '<p>567567</p>', 'Active', '2022-09-08 03:41:59', '2022-09-08 03:41:59'),
+(22, 'Men\'s Fashion', 'submit', '8725901035189084', 'Stylish Comfortable jersey T-shirt for Men New Contrast', 'stylish_comfortable_jersey_t_shirt_for_men_new_contrast', 'bb', NULL, 'uniliver1', 'tgt', 'Oregon', '20', 'mn', '121', 'New', 't,k,t', '44', '44', '400', '500', NULL, '0', NULL, '<p>erwe</p>', 'Active', '2022-09-08 03:37:18', '2022-09-08 03:37:18'),
+(23, 'Men\'s Fashion', 'submit', '9293034438297855', 'Digital Printed Short Sleeve t-shirt for Men- Red', 'digital_printed_short_sleeve_t_shirt_for_men_red', 'uyu', NULL, 'rrrrrr', 't56', 'Nevada', '567567', '67567', '56756', 'Old', '576', '66', '65756', '450', '500', NULL, '0', NULL, '<p>567567</p>', 'Active', '2022-09-08 03:41:59', '2022-09-08 03:41:59'),
 (24, NULL, 'submit', '6030120730144170', 'qQgbhFlFQ7', 'qqgbhflfq7', 'X44lURwGAZ', 'cNJwxiZKgz', 'rrrrrr', 't36', 'California', '573112', '1bmpjuLpZx', 'MwoItf8Wq0', 'New', 'QbCjZXUjKc', 'Cp29ZqzJ4G', 'OEZstqNjNB', '0', '0', NULL, '0', NULL, 'JBIz6JPxJr', 'Active', '2022-09-09 02:47:13', '2022-09-09 02:47:13'),
 (25, NULL, 'submit', '2481132475337331', 'fw4ysfq8lO', 'fw4ysfq8lo', 'oNZMCvY6eg', 'MWIRZLR1HG', 'rrrrrr', 't36', 'California', '717805', '03Pugsy822', 'fSKuBDoS5m', 'New', 'OQTTx1XAk0', 'f7uyO4u8KQ', 'GueeWghF0X', '0', '0', NULL, '0', NULL, 'ygWimFlUtb', 'Active', '2022-09-09 02:47:20', '2022-09-09 02:47:20'),
 (26, NULL, 'submit', '9562752517040770', 'CwGucVHWEf', 'cwgucvhwef', '9Y5YnVNuuk', '8J1Ofcl7NR', 'rrrrrr', 't36', 'California', '849544', 'O765XjTAT9', 'OdWMRGSSEp', 'New', 'JL1DKP7UCU', 'R502xW64VZ', 'VGAtOusCi8', '0', '0', NULL, '0', NULL, 'x1nnb1I4aa', 'Active', '2022-09-09 02:47:28', '2022-09-09 02:47:28'),
@@ -2960,6 +2960,7 @@ CREATE TABLE `purchasedetails` (
   `product_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `purchase_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `buy_price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_buy_price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2970,9 +2971,19 @@ CREATE TABLE `purchasedetails` (
 -- Dumping data for table `purchasedetails`
 --
 
-INSERT INTO `purchasedetails` (`id`, `purchase_lot_number`, `product_id`, `purchase_id`, `buy_price`, `quantity`, `status`, `created_at`, `updated_at`) VALUES
-(1, NULL, '50', '3', '18', '3', NULL, '2022-10-31 05:56:13', '2022-10-31 05:56:13'),
-(2, NULL, '50', '4', '14', '2', NULL, '2022-10-31 06:23:16', '2022-10-31 06:23:16');
+INSERT INTO `purchasedetails` (`id`, `purchase_lot_number`, `product_id`, `purchase_id`, `buy_price`, `main_buy_price`, `quantity`, `status`, `created_at`, `updated_at`) VALUES
+(1, NULL, '50', '3', '18', NULL, '3', NULL, '2022-10-31 05:56:13', '2022-10-31 05:56:13'),
+(2, NULL, '50', '4', '14', NULL, '2', NULL, '2022-10-31 06:23:16', '2022-10-31 06:23:16'),
+(3, NULL, '50', '5', '600', NULL, '2', NULL, '2022-11-01 03:37:51', '2022-11-01 03:37:51'),
+(4, NULL, '50', '6', '300', NULL, '1', NULL, '2022-11-01 03:41:47', '2022-11-01 03:41:47'),
+(5, NULL, '50', '7', '300', NULL, '1', NULL, '2022-11-01 03:42:07', '2022-11-01 03:42:07'),
+(6, NULL, '50', '8', '300', NULL, '1', NULL, '2022-11-01 03:42:31', '2022-11-01 03:42:31'),
+(7, NULL, '50', '9', '300', NULL, '1', NULL, '2022-11-01 03:42:57', '2022-11-01 03:42:57'),
+(8, NULL, '50', '10', '300', NULL, '1', NULL, '2022-11-01 03:43:21', '2022-11-01 03:43:21'),
+(9, NULL, '50', '11', '300', NULL, '1', NULL, '2022-11-01 03:43:55', '2022-11-01 03:43:55'),
+(10, NULL, '50', '12', '300', NULL, '1', NULL, '2022-11-01 03:46:50', '2022-11-01 03:46:50'),
+(13, NULL, '50', '13', '900', '300', '3', NULL, '2022-11-01 04:09:54', '2022-11-01 04:09:54'),
+(14, NULL, '23', '13', '1350', '450', '3', NULL, '2022-11-01 04:09:54', '2022-11-01 04:09:54');
 
 -- --------------------------------------------------------
 
@@ -2986,11 +2997,19 @@ CREATE TABLE `purchasereturndetails` (
   `product_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `purchase_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `buy_price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_buy_price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `purchasereturndetails`
+--
+
+INSERT INTO `purchasereturndetails` (`id`, `purchase_lot_number`, `product_id`, `purchase_id`, `buy_price`, `main_buy_price`, `quantity`, `status`, `created_at`, `updated_at`) VALUES
+(1, NULL, '50', '1', '900', '300', '3', NULL, '2022-11-01 07:12:50', '2022-11-01 07:12:50');
 
 -- --------------------------------------------------------
 
@@ -3001,9 +3020,13 @@ CREATE TABLE `purchasereturndetails` (
 CREATE TABLE `purchasereturns` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `purchase_lot_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `request_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `warehouse` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `vendor_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `request_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `purchase_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `request_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `request_note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total_product` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total_quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total_buy_price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -3015,6 +3038,13 @@ CREATE TABLE `purchasereturns` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `purchasereturns`
+--
+
+INSERT INTO `purchasereturns` (`id`, `purchase_lot_number`, `request_number`, `warehouse`, `vendor_id`, `request_id`, `purchase_date`, `request_date`, `request_note`, `total_product`, `total_quantity`, `total_buy_price`, `term`, `total_due`, `total_paid`, `status`, `created_at`, `updated_at`) VALUES
+(1, '5678568678', 'XOF6TM9ZR2', 'Kamruzzaman kajol', 'Kamruzzaman kajol', NULL, '22 Oct, 2022', '24 Oct, 2022', 'kyuiyui', '1', '3', '900', 'Select', NULL, NULL, 'inc', '2022-11-01 07:12:50', '2022-11-01 07:12:50');
+
 -- --------------------------------------------------------
 
 --
@@ -3024,6 +3054,7 @@ CREATE TABLE `purchasereturns` (
 CREATE TABLE `purchases` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `request_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `warehouse` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `request_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `purchase_lot_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `vendor_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -3045,11 +3076,19 @@ CREATE TABLE `purchases` (
 -- Dumping data for table `purchases`
 --
 
-INSERT INTO `purchases` (`id`, `request_number`, `request_date`, `purchase_lot_number`, `vendor_id`, `request_id`, `request_note`, `purchase_date`, `total_product`, `total_quantity`, `total_buy_price`, `term`, `total_due`, `total_paid`, `status`, `created_at`, `updated_at`) VALUES
-(1, '30 Oct, 2022', '30 Oct, 2022', '5678568678', 'Kamruzzaman kajol', NULL, '767867', '22 Oct, 2022', '2', '5', NULL, NULL, NULL, NULL, 'inc', '2022-10-31 05:53:48', '2022-10-31 05:53:48'),
-(2, '31 Oct, 2022', '31 Oct, 2022', '7876868', 'Kamruzzaman kajol', NULL, 'utyuyt', '03 Nov, 2022', '1', '15', NULL, NULL, NULL, NULL, 'inc', '2022-10-31 05:55:14', '2022-10-31 05:55:14'),
-(3, '24 Oct, 2022', '24 Oct, 2022', '5567567', 'Kamruzzaman kajol', NULL, '5656', '17 Oct, 2022', '1', '3', NULL, NULL, NULL, NULL, 'inc', '2022-10-31 05:56:13', '2022-10-31 05:56:13'),
-(4, '24 Oct, 2022', '24 Oct, 2022', 'Mok-631898282', 'Kamruzzaman kajol', NULL, 'iiiiiiii', '18 Oct, 2022', '2', '12', '113', NULL, NULL, NULL, 'inc', '2022-10-31 06:23:16', '2022-10-31 06:23:16');
+INSERT INTO `purchases` (`id`, `request_number`, `warehouse`, `request_date`, `purchase_lot_number`, `vendor_id`, `request_id`, `request_note`, `purchase_date`, `total_product`, `total_quantity`, `total_buy_price`, `term`, `total_due`, `total_paid`, `status`, `created_at`, `updated_at`) VALUES
+(1, '30 Oct, 2022', NULL, '30 Oct, 2022', '5678568678', 'Kamruzzaman kajol', NULL, '767867', '22 Oct, 2022', '2', '5', NULL, NULL, NULL, NULL, 'inc', '2022-10-31 05:53:48', '2022-10-31 05:53:48'),
+(2, '31 Oct, 2022', NULL, '31 Oct, 2022', '7876868', 'Kamruzzaman kajol', NULL, 'utyuyt', '03 Nov, 2022', '1', '15', NULL, NULL, NULL, NULL, 'inc', '2022-10-31 05:55:14', '2022-10-31 05:55:14'),
+(3, '24 Oct, 2022', NULL, '24 Oct, 2022', '5567567', 'Kamruzzaman kajol', NULL, '5656', '17 Oct, 2022', '1', '3', NULL, NULL, NULL, NULL, 'inc', '2022-10-31 05:56:13', '2022-10-31 05:56:13'),
+(4, '24 Oct, 2022', NULL, '24 Oct, 2022', 'Mok-631898282', 'Kamruzzaman kajol', NULL, 'iiiiiiii', '18 Oct, 2022', '2', '12', '113', NULL, NULL, NULL, 'inc', '2022-10-31 06:23:16', '2022-10-31 06:23:16'),
+(5, 'KM1VD756WL', NULL, '24 Oct, 2022', 'Han-948443025', 'Kamruzzaman kajol', NULL, 'uiopiu', '11 Oct, 2022', '1', '2', '600', NULL, NULL, NULL, 'inc', '2022-11-01 03:37:51', '2022-11-01 03:37:51'),
+(6, 'XN3V9TEWA2', NULL, '24 May, 1906', 'GPk-733585859', 'Kamruzzaman kajol', NULL, 'ul;ikl;', '17 Oct, 2022', '1', '1', '300', NULL, NULL, NULL, 'inc', '2022-11-01 03:41:47', '2022-11-01 03:41:47'),
+(7, 'S301FKM4C2', NULL, '20 Oct, 2022', 'GPk-733585859', 'Kamruzzaman kajol', NULL, 'uipoip', '05 Oct, 2022', '1', '1', '300', NULL, NULL, NULL, 'inc', '2022-11-01 03:42:07', '2022-11-01 03:42:07'),
+(8, 'UB6GKS3TDE', NULL, '24 May, 1906', 'Mok-631898282', 'Kamruzzaman kajol', NULL, '89o89o', '22 Oct, 2022', '1', '1', '300', NULL, NULL, NULL, 'inc', '2022-11-01 03:42:31', '2022-11-01 03:42:31'),
+(10, '3KYML7P4AT', NULL, '20 Oct, 2022', '8678678', 'Kamruzzaman kajol', NULL, 'iuolui', '03 Nov, 2022', '1', '1', '300', NULL, NULL, NULL, 'inc', '2022-11-01 03:43:21', '2022-11-01 03:43:21'),
+(11, 'NS2GZQCY4A', NULL, '22 Oct, 2022', 'Han-948443025', 'Kamruzzaman kajol', NULL, 'oioi', '20 Oct, 2022', '1', '1', '300', NULL, NULL, NULL, 'inc', '2022-11-01 03:43:55', '2022-11-01 03:43:55'),
+(12, 'DNPTE7V0GW', '0', '20 Oct, 2022', '5678568678', 'Kamruzzaman kajol', NULL, 'yukuy', '22 Oct, 2022', '1', '1', '300', NULL, NULL, NULL, 'inc', '2022-11-01 03:46:50', '2022-11-01 03:46:50'),
+(13, NULL, 'Kamruzzaman kajol', NULL, 'Han-948443025', 'Kamruzzaman kajol', NULL, 'kgyujkujy', '28 Sep, 2022', '2', '6', '2250', 'Instant Payment', NULL, NULL, 'inc', '2022-11-01 04:06:31', '2022-11-01 04:09:24');
 
 -- --------------------------------------------------------
 
@@ -3073,7 +3112,15 @@ CREATE TABLE `requestproductdetails` (
 INSERT INTO `requestproductdetails` (`id`, `request_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
 (2, '2', '50', '4', '2022-10-24 03:20:19', '2022-10-24 03:20:19'),
 (3, '1', '50', '2', '2022-10-24 06:09:41', '2022-10-24 06:09:41'),
-(4, '3', '50', '3', '2022-10-31 05:44:25', '2022-10-31 05:44:25');
+(4, '3', '50', '3', '2022-10-31 05:44:25', '2022-10-31 05:44:25'),
+(5, '4', '50', '4', '2022-11-01 01:22:31', '2022-11-01 01:22:31'),
+(6, '5', '50', '4', '2022-11-01 01:22:54', '2022-11-01 01:22:54'),
+(7, '6', '50', '4', '2022-11-01 01:23:30', '2022-11-01 01:23:30'),
+(8, '7', '50', '2', '2022-11-01 01:23:50', '2022-11-01 01:23:50'),
+(9, '8', '50', '4', '2022-11-01 01:24:12', '2022-11-01 01:24:12'),
+(10, '9', '49', '4', '2022-11-01 01:24:35', '2022-11-01 01:24:35'),
+(11, '10', '50', '4', '2022-11-01 01:24:59', '2022-11-01 01:24:59'),
+(12, '11', '50', '5', '2022-11-01 01:25:19', '2022-11-01 01:25:19');
 
 -- --------------------------------------------------------
 
@@ -3104,7 +3151,14 @@ CREATE TABLE `requestproducts` (
 INSERT INTO `requestproducts` (`id`, `vendor_id`, `request_number`, `request_date`, `request_note`, `total_product`, `total_quantity`, `urgent`, `request_delivery_date`, `term`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Kamruzzaman kajol', 'KTNPQSLOH3', '2022-10-03', 'uuio', '1', '2', 'Yes', '2022-10-27', 'Instant Payment', 'inc', '2022-10-19 05:28:39', '2022-10-19 05:28:39'),
 (2, 'Kamruzzaman kajol', 'OGSRQEWXU7', '2022-10-10', 'wer', '1', '4', 'Yes', '2022-10-13', 'Instant Payment', 'inc', '2022-10-24 03:20:19', '2022-10-24 03:20:19'),
-(3, 'Kamruzzaman kajol', NULL, '1970-01-01', 'fedfwer', '2', '303', NULL, '1970-01-01', NULL, 'inc', '2022-10-31 05:44:25', '2022-10-31 05:44:25');
+(3, 'Kamruzzaman kajol', NULL, '1970-01-01', 'fedfwer', '2', '303', NULL, '1970-01-01', NULL, 'inc', '2022-10-31 05:44:25', '2022-10-31 05:44:25'),
+(4, 'Kamruzzaman kajol', 'PZEQR68SLO', '2022-10-17', 'gfgfd', '1', '4', 'Yes', '2022-10-24', 'After Delivery', 'inc', '2022-11-01 01:22:31', '2022-11-01 01:22:31'),
+(5, 'Kamruzzaman kajol', 'EHX07K895G', '2022-10-11', 'gfrert', '1', '4', 'Yes', '2022-10-31', 'After Delivery', 'inc', '2022-11-01 01:22:53', '2022-11-01 01:22:53'),
+(6, 'Kamruzzaman kajol', '7KC6QW43UL', '2022-10-18', 'wazjyu7rWk', '1', '4', 'Yes', '2022-10-24', 'After Delivery', 'inc', '2022-11-01 01:23:30', '2022-11-01 01:23:30'),
+(7, 'Kamruzzaman kajol', 'S9PX0H6C48', '2022-10-24', 'gfdg', '1', '2', 'Yes', '1970-01-01', 'After Delivery', 'inc', '2022-11-01 01:23:50', '2022-11-01 01:23:50'),
+(9, 'Kamruzzaman kajol', '9SV7PGXOB8', '2022-10-11', 'ertret', '1', '4', 'Yes', '1970-01-01', 'After Delivery', 'inc', '2022-11-01 01:24:35', '2022-11-01 01:24:35'),
+(10, 'Kamruzzaman kajol', 'FGO56DTSJQ', '2022-10-10', 'ertert', '1', '4', 'Yes', '2022-10-31', 'After Delivery', 'inc', '2022-11-01 01:24:59', '2022-11-01 01:24:59'),
+(11, 'Kamruzzaman kajol', '049IOD2XSH', '2022-10-25', 'erter', '1', '5', 'Yes', '2022-10-31', 'Due end of Month', 'inc', '2022-11-01 01:25:19', '2022-11-01 01:25:19');
 
 -- --------------------------------------------------------
 
@@ -4261,37 +4315,37 @@ ALTER TABLE `product_quantities`
 -- AUTO_INCREMENT for table `purchasedetails`
 --
 ALTER TABLE `purchasedetails`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `purchasereturndetails`
 --
 ALTER TABLE `purchasereturndetails`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `purchasereturns`
 --
 ALTER TABLE `purchasereturns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `requestproductdetails`
 --
 ALTER TABLE `requestproductdetails`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `requestproducts`
 --
 ALTER TABLE `requestproducts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `reviews`
